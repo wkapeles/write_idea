@@ -58,7 +58,7 @@ Begin Window WriteIdeaMain
       Visible         =   True
       Width           =   111
    End
-   Begin TextField newIdeaText
+   Begin TextArea newIdeaText
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -66,26 +66,31 @@ Begin Window WriteIdeaMain
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
-      CueText         =   "Enter new idea here..."
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
       Height          =   66
       HelpTag         =   ""
+      HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
       Left            =   20
       LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
       Mask            =   ""
-      Password        =   False
+      Multiline       =   True
       ReadOnly        =   False
       Scope           =   2
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
@@ -384,13 +389,6 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag Events newIdeaText
-	#tag Event
-		Sub LostFocus()
-		  
-		  
-		  
-		End Sub
-	#tag EndEvent
 #tag EndEvents
 #tag Events deleteButton
 	#tag Event
@@ -445,6 +443,13 @@ End
 	#tag Event
 		Sub Open()
 		  Dim result As Boolean = listBoxRefresh
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  
+		  Dim idea As String =  ideasListBox.Cell ( ideasListBox.ListIndex , 4)
+		  newIdeaText.Text = idea
 		End Sub
 	#tag EndEvent
 #tag EndEvents
