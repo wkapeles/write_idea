@@ -489,6 +489,41 @@ End
 #tag Events writtenButton
 	#tag Event
 		Sub Action()
+		  If ideasListBox.ListIndex < 0 Then
+		    MsgBox ("Error: You must select an idea before you can edit it.")
+		    Return
+		  End If
+		  
+		  Dim written As New Date
+		  Dim index As String = ideasListBox.Cell(ideasListBox.ListIndex,0)
+		  Dim dbFile As FolderItem
+		  Dim db As New SQLiteDatabase
+		  dbFile = GetFolderItem("writeIdea.sqlite")
+		  db.DatabaseFile = dbFile
+		  If db.Connect Then
+		    Dim rs As RecordSet
+		    rs = db.SQLSelect("SELECT * FROM ideas WHERE id_idea = "+ index +";")
+		    If rs <> Nil Then
+		      If Not rs.EOF Then
+		        rs.Edit
+		        If Not db.Error Then
+		          rs.Field("date_written").StringValue = written.ShortDate
+		          rs.Update
+		        Else
+		          MsgBox(db.ErrorMessage)
+		        End If
+		        
+		      End If
+		      rs.Close
+		      Dim result As Boolean = listBoxRefresh
+		    Else
+		      If db.Error Then
+		        MsgBox(db.ErrorMessage)
+		      End If
+		    End If
+		  Else
+		    MsgBox("Error connecting to DB.  Error: "+ db.ErrorMessage )
+		  End If
 		  
 		End Sub
 	#tag EndEvent
@@ -496,6 +531,41 @@ End
 #tag Events publishedButton
 	#tag Event
 		Sub Action()
+		  If ideasListBox.ListIndex < 0 Then
+		    MsgBox ("Error: You must select an idea before you can edit it.")
+		    Return
+		  End If
+		  
+		  Dim published As New Date
+		  Dim index As String = ideasListBox.Cell(ideasListBox.ListIndex,0)
+		  Dim dbFile As FolderItem
+		  Dim db As New SQLiteDatabase
+		  dbFile = GetFolderItem("writeIdea.sqlite")
+		  db.DatabaseFile = dbFile
+		  If db.Connect Then
+		    Dim rs As RecordSet
+		    rs = db.SQLSelect("SELECT * FROM ideas WHERE id_idea = "+ index +";")
+		    If rs <> Nil Then
+		      If Not rs.EOF Then
+		        rs.Edit
+		        If Not db.Error Then
+		          rs.Field("date_published").StringValue = published.ShortDate
+		          rs.Update
+		        Else
+		          MsgBox(db.ErrorMessage)
+		        End If
+		        
+		      End If
+		      rs.Close
+		      Dim result As Boolean = listBoxRefresh
+		    Else
+		      If db.Error Then
+		        MsgBox(db.ErrorMessage)
+		      End If
+		    End If
+		  Else
+		    MsgBox("Error connecting to DB.  Error: "+ db.ErrorMessage )
+		  End If
 		  
 		End Sub
 	#tag EndEvent
