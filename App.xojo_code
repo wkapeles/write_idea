@@ -12,14 +12,13 @@ Inherits Application
 		  db.DatabaseFile = dbFile
 		  If db.Connect Then
 		    WriteIdeaMain.Show
-		  Else // create a database
+		  Else 
 		    Dim f As FolderItem
 		    f = New FolderItem("writeIdea.sqlite")
 		    
 		    Dim dbase As New SQLiteDatabase
 		    dbase.DatabaseFile = f
 		    If dbase.CreateDatabaseFile Then
-		      // proceed with database operations...
 		      dbase.SQLExecute("CREATE TABLE ideas ( id_idea INTEGER PRIMARY KEY, date_created DATE , date_written DATE , date_published DATE, idea TEXT);")
 		    Else
 		      MsgBox("Database not created. Error: " + dbase.ErrorMessage)
@@ -47,5 +46,7 @@ Inherits Application
 	#tag EndConstant
 
 
+	#tag ViewBehavior
+	#tag EndViewBehavior
 End Class
 #tag EndClass
