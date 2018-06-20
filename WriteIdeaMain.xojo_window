@@ -220,38 +220,6 @@ Begin Window WriteIdeaMain
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin PushButton detailViewButton
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "View Detailed"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   "Click here to see the entire idea..."
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   743
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   2
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   512
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   145
-   End
    Begin PushButton writtenButton
       AutoDeactivate  =   True
       Bold            =   False
@@ -265,7 +233,7 @@ Begin Window WriteIdeaMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   187
+      Left            =   577
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -278,7 +246,7 @@ Begin Window WriteIdeaMain
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   512
+      Top             =   511
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -297,7 +265,7 @@ Begin Window WriteIdeaMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   355
+      Left            =   745
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -310,7 +278,7 @@ Begin Window WriteIdeaMain
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   512
+      Top             =   511
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -408,6 +376,7 @@ End
 		      MsgBox("Record not created. Error: " + db.ErrorMessage)
 		    End If
 		    Dim test As Boolean = listBoxRefresh
+		    newIdeaText.text = ""
 		  End If
 		  
 		  
@@ -476,13 +445,6 @@ End
 	#tag Event
 		Sub Open()
 		  Dim result As Boolean = listBoxRefresh
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events detailViewButton
-	#tag Event
-		Sub Action()
-		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
